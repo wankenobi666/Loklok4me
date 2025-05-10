@@ -1,1 +1,44 @@
 // Loklok4me plugin code placeholder
+
+import com.lagradost.cloudstream3.* import com.lagradost.cloudstream3.utils.*
+
+class Loklok4me : MainAPI() { override var mainUrl = "https://www.loklok.com" override var name = "Loklok4me" override val hasMainPage = true override var lang = "en" override val supportedTypes = setOf(TvType.Movie, TvType.TvSeries, TvType.Anime)
+
+override val mainPage = listOf(
+    MainPageData("Discover", "$mainUrl/discover", "Movies & Series")
+)
+
+override suspend fun getMainPage(page: Int, request: MainPageRequest): HomePageResponse {
+    val res = app.get(request.data)
+    val document = res.document
+    val items = document.select(".movie-item a").map {
+        val title = it.selectFirst(".title")?.text()?.trim().toString()
+        val href = it.attr("href")
+        val poster = it.selectFirst("img")?.attr("src") ?: ""
+        TvSeriesSearchResponse(
+            title,
+            fixUrl(mainUrl + href),
+            this.name,
+            TvType.Movie,
+            fixUrl(poster),
+            null,
+            null
+        )
+    }
+    return newHomePageResponse(request.name, items)
+}
+
+override suspend fun load(url: String): LoadResponse {
+    val res = app.get(url)
+    val doc = res.document
+    val title = doc.selectFirst(".video-title")?.text()?.trim() ?: "Unknown Title"
+    val poster = doc.selectFirst(".video-cover img")?.attr("src")
+    val description = doc.selectFirst(".video-desc")?.text()?.trim()
+
+    val episodes = doc.select(".episode-list a").map {
+        Episode(fixUrl(it.attr("href")), it.text().trim())
+    }
+
+    return newTv
+
+
