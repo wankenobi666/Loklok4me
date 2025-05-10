@@ -1,0 +1,9 @@
+{
+  "name": "Loklok4me",
+  "description": "Loklok plugin for CloudStream that supports movies, series, and anime.",
+  "version": "1.0.0",
+  "packageName": "com.loklok4me",
+  "mainClass": "com.loklok4me.Loklok4me",
+  "targetApi": 3,
+  "tvTypes": ["Movie", "TvSeries", "Anime"]
+}
