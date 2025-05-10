@@ -1,0 +1,8 @@
+{
+  "name": "Loklok4me",
+  "description": "Plugin for Loklok - supports movies, series, and anime.",
+  "manifestVersion": 1,
+  "pluginVersion": "1.0.0",
+  "pluginLoader": "cloudstream3",
+  "url": "Loklok4me.cs3"
+}
