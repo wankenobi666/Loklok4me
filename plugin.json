@@ -1,9 +1,12 @@
 {
-  "name": "Loklok4me",
-  "description": "Loklok plugin for CloudStream that supports movies, series, and anime.",
-  "version": "1.0.0",
-  "packageName": "com.loklok4me",
-  "mainClass": "com.loklok4me.Loklok4me",
-  "targetApi": 3,
-  "tvTypes": ["Movie", "TvSeries", "Anime"]
+  "name": "Loklok4me Repo",
+  "description": "Plugin Loklok untuk CloudStream",
+  "plugins": [
+    {
+      "name": "Loklok4me",
+      "filename": "Loklok4me.cs3",
+      "version": 1,
+      "url": "https://raw.githubusercontent.com/wankenobi666/Loklok4me/main/Loklok4me.cs3"
+    }
+  ]
 }
